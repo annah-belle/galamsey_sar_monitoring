@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "Sentinel-1 SAR Monitoring of Galamsey Activity in Southern Ghana"
+type: software
+authors:
+  - family-names: Bonsu
+    given-names: Anabel
+    affiliation: "Eberswalde University for Sustainable Development"
+abstract: >-
+  Thesis-derived scripts for Sentinel-1 SAR preprocessing, Sentinel-1 feature
+  engineering and machine-learning model training, and spatial-temporal
+  hotspot-evolution analysis for galamsey monitoring in Southern Ghana.
+license: MIT
+version: 0.1.0
+keywords:
+  - Sentinel-1
+  - SAR
+  - remote sensing
+  - GIS
+  - geospatial analysis
+  - machine learning
+  - galamsey
+  - Ghana
+  - hotspot analysis

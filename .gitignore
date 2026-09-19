@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+
+# Local data and satellite products
+sentinel1_raw/
+*.SAFE/
+*.zip
+*.dim
+*.data/
+
+# Large geospatial outputs
+*.tif
+*.tiff
+*.vrt
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+
+# Training artifacts
+*.joblib
+model_outputs_s1/
+training_summary.json
+processing_status.json
+
+# Logs / temporary files
+*.log
+*.tmp
