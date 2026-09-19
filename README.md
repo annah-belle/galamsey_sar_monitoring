@@ -62,7 +62,9 @@ The study focused on mining-affected areas across five regions of Southern Ghana
 
 The geographic focus was selected to represent areas where artisanal and small-scale mining activity has been documented and where satellite-based monitoring can provide useful spatial and temporal information.
 
-> **Map:** A study-area figure can be added to `figures/` when the final portfolio visual set is committed to the repository.
+![Study area](figures/study_area.png)
+
+*Study area covering the five regions of Southern Ghana used in the research.*
 
 ---
 
@@ -146,6 +148,10 @@ The supplied batch-processing implementation includes:
 6. Conversion to decibel (dB) representation
 7. GeoTIFF/BigTIFF export
 
+![Sentinel-1 preprocessing workflow](figures/preprocessing_workflow.png)
+
+*Preprocessing workflow derived from the thesis methodology.*
+
 ### Important implementation note
 
 The supplied single-scene and batch scripts are not completely identical. The **batch script includes GRD border-noise removal**, whereas the supplied single-scene script does not. The repository documents this difference rather than silently changing the original research implementation.
@@ -167,6 +173,10 @@ Five Sentinel-1-derived predictors are used by the supplied model-training workf
 | **NPI** | Normalized Polarisation Index derived from linear VV and VH |
 
 The feature engineering implementation handles invalid/infinite derived values before model fitting, with median imputation included in the model pipelines.
+
+![Sentinel-1 feature importance](figures/feature_importance.png)
+
+*Feature-importance comparison reported in the thesis for selected classifiers.*
 
 ---
 
@@ -203,6 +213,10 @@ The thesis workflow uses an operational threshold of:
 
 Pixels meeting or exceeding this threshold are classified as detected galamsey activity for the relevant analysis.
 
+![Probability threshold analysis](figures/threshold_analysis.png)
+
+*Threshold/performance analysis from the thesis, including the precision–recall trade-off across selected probability thresholds.*
+
 ---
 
 ## 10. Temporal hotspot analysis
@@ -232,11 +246,27 @@ This provides a simple spatial representation of how detected activity changes o
 
 ## 11. Results
 
-The thesis reports model-performance comparisons, probability-based detection, annual detected-area/probability trends, and hotspot-evolution analysis.
+The thesis reports model-performance comparisons, probability-based detection, annual detected-area/probability trends, and hotspot-evolution analysis. Selected thesis-derived figures are included below as visual evidence of the analytical outputs.
 
-The portfolio version of this repository intentionally separates **verified research results** from the processing code. Detailed result figures and tables will be added under `figures/` and `results/` once the final thesis visual set is committed.
+### Example temporal detection outputs
 
-> **Why this matters:** reproducible geospatial work should make a clear distinction between the code used to generate an analysis and the numerical results actually produced by a particular run.
+![Temporal galamsey detection outputs](figures/temporal_outputs.png)
+
+*Example June outputs for 2015, 2019 and 2024 showing probability maps, binary detections and Sentinel-2 reference composites.*
+
+### Temporal trend
+
+![Temporal analysis](figures/temporal_analysis.png)
+
+*Annual mean galamsey probability and detected area within the Common Monitoring Footprint (CMF).*
+
+### Hotspot evolution
+
+![Hotspot evolution](figures/hotspot_evolution.png)
+
+*Examples of persistent, emerging and abandoned hotspot patterns within the Common Monitoring Footprint.*
+
+> **Why this matters:** the portfolio distinguishes between the processing code and the research outputs actually reported by the thesis. The figures above are thesis-derived visual evidence; the repository does not claim that the supplied training script independently reproduces every reported metric.
 
 ---
 
