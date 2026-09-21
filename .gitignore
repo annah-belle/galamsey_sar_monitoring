@@ -44,3 +44,6 @@ processing_status.json
 # Logs / temporary files
 *.log
 *.tmp
+
+# Local tabular datasets
+data/*.csv
