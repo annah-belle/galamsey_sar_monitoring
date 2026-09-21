@@ -77,10 +77,52 @@ The cleaned implementation adds checks that the input set contains exactly one r
 
 Raw Sentinel-1 products, credentials, generated rasters, and trained model binaries should not be committed to the public repository by default. The code expects these resources to be supplied locally.
 
-## 6. Items to confirm before GitHub publication
+## 6. Items to verify in future revisions
 
 - Confirm whether border-noise removal should be present in both single-scene and batch workflows.
 - Confirm the intended SNAP Python bridge: `snappy` or `esa_snappy`.
 - Confirm the intended map projection/CRS represented by `AUTO:42001` in the actual thesis workflow.
 - Confirm whether a separate thesis evaluation script/notebook exists for the held-out plots; if so, add it as an explicit evaluation component rather than modifying the training script's historical behavior.
 - Confirm exact data/licensing/attribution requirements for the satellite data and external DEM.
+
+## 7. Reproducibility and methodological limitations
+
+This repository is intended to document and support reproduction of the project workflow while keeping large source datasets and external software dependencies outside GitHub.
+
+### Data availability
+
+The full Sentinel-1 GRD archive used in the thesis is not distributed with this repository because of its size. Sentinel-1 products should be obtained from the Copernicus Data Space Ecosystem or another appropriate source and supplied locally.
+
+Sentinel-2 data were used as reference information for sample labelling and interpretation. They are not used as predictor variables in the Sentinel-1 machine-learning workflow documented here.
+
+### Spatial validation
+
+Reference samples are associated with spatially defined plots. Plots 1 and 5 are designated as held-out plots in the supplied training workflow, while the remaining plots are used for model fitting and GroupKFold hyperparameter tuning.
+
+The current training script creates the held-out test subset but does not calculate predictions or held-out performance metrics. Consequently, the repository does not claim held-out accuracy, precision, recall, F1, ROC-AUC, or confusion-matrix results from that script.
+
+The thesis analysis documents a major spatial-generalisation limitation on the held-out Plot 5. This result should therefore be considered when interpreting model transferability beyond the training plots.
+
+### Temporal comparability
+
+The temporal analysis uses a Common Monitoring Footprint (CMF) derived from the June Sentinel-1 acquisitions for 2015–2025. Restricting analysis to a common spatial footprint supports comparison across years by reducing differences caused by changing spatial coverage.
+
+The hotspot-evolution workflow expects exactly one compatible annual raster for each year from 2015 through 2025. The cleaned implementation additionally checks raster dimensions, CRS, and affine transform before combining the annual layers.
+
+### Workflow differences and implementation notes
+
+The single-scene and batch Sentinel-1 SNAP scripts are intentionally preserved as separate workflows. The batch workflow includes GRD border-noise removal, whereas the supplied single-scene workflow does not.
+
+The scripts also preserve the different SNAP Python module imports present in the supplied source material (`snappy` and `esa_snappy`). These differences should be standardised only after confirming the SNAP installation and workflow used for the thesis.
+
+The SNAP terrain-correction scripts preserve the `AUTO:42001` parameter from the supplied implementation. The intended projection should be confirmed against the final thesis workflow before changing this value.
+
+### Interpretation of portfolio results
+
+Performance values presented in the portfolio are documented as thesis results or results from explicitly evaluated analysis components. They should not be interpreted as newly reproduced model metrics unless the corresponding evaluation workflow has been executed from the supplied data and code.
+
+The repository therefore distinguishes between:
+- documented thesis results,
+- workflow code preserved from the project,
+- portfolio visualisations based on documented results, and
+- analyses that require the original source data and external software environment for full reproduction.
