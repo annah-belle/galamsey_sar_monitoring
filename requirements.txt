@@ -2,6 +2,7 @@
 # ESA SNAP and its Python bridge are installed separately.
 boto3>=1.34,<2
 joblib>=1.3,<2
+matplotlib>=3.8,<4
 numpy>=1.24,<3
 pandas>=2.0,<3
 rasterio>=1.3,<2
